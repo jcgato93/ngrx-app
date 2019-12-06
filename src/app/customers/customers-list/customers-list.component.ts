@@ -3,8 +3,7 @@ import { Store, select } from '@ngrx/store';
 import { Customer } from '../customer.model';
 import { Observable } from "rxjs";
 import * as customerActions from "../state/customer.actions";
-import * as customerReducer from "../state/customer.reducer";
-import * as customerSelectors from "../state/customer.selectors";
+import * as fromCustomer from "../state/customer.reducer";
 
 
 @Component({
@@ -18,12 +17,12 @@ export class CustomersListComponent implements OnInit {
 
   loaded$:  Observable<boolean>;
 
-  constructor(private store: Store<customerReducer.AppState>) { }
+  constructor(private store: Store<fromCustomer.AppState>) { }
 
   ngOnInit() {
     this.store.dispatch(new customerActions.LoadCustomers());
     this.customers$ = this.store.pipe(
-      select(customerSelectors.getCustomers)
+      select(fromCustomer.getCustomers)
     )
   }
 
