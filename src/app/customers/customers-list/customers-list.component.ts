@@ -14,8 +14,8 @@ import * as fromCustomer from "../state/customer.reducer";
 export class CustomersListComponent implements OnInit {
 
   customers$: Observable<Customer[]>;
-
-  loaded$:  Observable<boolean>;
+  error$: Observable<String>;
+  
 
   constructor(private store: Store<fromCustomer.AppState>) { }
 
@@ -24,6 +24,19 @@ export class CustomersListComponent implements OnInit {
     this.customers$ = this.store.pipe(
       select(fromCustomer.getCustomers)
     )
+
+    this.error$ = this.store.pipe(select(fromCustomer.getError));
+  }
+
+
+  deleteCustomer(customer:Customer){
+    if(confirm("Are You Sure you want to Delete the User?")){
+      this.store.dispatch(new customerActions.DeleteCustomer(customer.id))
+    }
+  }
+
+  editCustomer(customer:Customer){
+    this.store.dispatch(new customerActions.LoadCustomer(customer.id))
   }
 
 }
