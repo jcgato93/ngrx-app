@@ -10,6 +10,12 @@ import { HttpClientModule } from "@angular/common/http";
 import { EffectsModule } from '@ngrx/effects';
 
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { StoreRouterConnectingModule, routerReducer, RouterStateSerializer } from "@ngrx/router-store";
+import { CustomSerializer } from "./shared/utils";
+import { environment } from 'src/environments/environment';
+import { CustomersModule } from './customers/customers.module';
+import { CounterStoreModule } from './store/counter/counter.store.module';
+
 
 @NgModule({
   declarations: [
@@ -21,9 +27,16 @@ import { StoreDevtoolsModule } from "@ngrx/store-devtools";
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot({
+      router: routerReducer
+    }),
+    StoreRouterConnectingModule.forRoot({      
+      serializer: CustomSerializer
+    }),
     EffectsModule.forRoot([]),
-    StoreDevtoolsModule.instrument()
+    environment.production ? [] : StoreDevtoolsModule.instrument(),
+    // CustomersModule,
+    // CounterStoreModule   
   ],
   providers: [],
   bootstrap: [AppComponent]

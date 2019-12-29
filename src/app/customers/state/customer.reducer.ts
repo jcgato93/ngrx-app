@@ -31,7 +31,7 @@ export const defaultCustomer: CustomerState = {
 export const initialState = customerAdapter.getInitialState(defaultCustomer);
 
 
-export function customerReducer(state = initialState, action: customerActions.Action): CustomerState{
+export function customerReducer(state = initialState, action: customerActions.Actions): CustomerState{
     switch (action.type) {
     
         case customerActions.CustomerActionTypes.LOAD_CUSTOMERS_SUCCESS:{
@@ -56,7 +56,7 @@ export function customerReducer(state = initialState, action: customerActions.Ac
         case customerActions.CustomerActionTypes.LOAD_CUSTOMER_SUCCESS:{
             return customerAdapter.addOne(action.payload, {
                 ...state,
-                selectedCustomerId: action.payload.id
+                selectedCustomerId: (!!action)?action.payload.id:null
             })
         }
 

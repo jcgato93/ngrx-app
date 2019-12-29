@@ -52,7 +52,7 @@ export class CustomerEffect {
 
 
     @Effect()
-    createCustome$: Observable<Action> = this.actions$.pipe(
+    createCustomer$: Observable<Action> = this.actions$.pipe(
         ofType<customerActions.CreateCustomer>(
             customerActions.CustomerActionTypes.CREATE_CUSTOMER
         ),
@@ -69,7 +69,7 @@ export class CustomerEffect {
     )
 
     @Effect()
-    updateCustome$: Observable<Action> = this.actions$.pipe(
+    updateCustomer$: Observable<Action> = this.actions$.pipe(
         ofType<customerActions.UpdateCustomer>(
             customerActions.CustomerActionTypes.UPDATE_CUSTOMER
         ),
@@ -91,7 +91,7 @@ export class CustomerEffect {
     )
 
     @Effect()
-    deleteCustome$: Observable<Action> = this.actions$.pipe(
+    deleteCustomer$: Observable<Action> = this.actions$.pipe(
         ofType<customerActions.DeleteCustomer>(
             customerActions.CustomerActionTypes.DELETE_CUSTOMER
         ),

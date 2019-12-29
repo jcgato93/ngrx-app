@@ -28,6 +28,7 @@ export class LoadCustomers implements Action{
     readonly type = CustomerActionTypes.LOAD_CUSTOMERS
 }
 
+
 export class LoadCustomersSuccess implements Action{
     readonly type = CustomerActionTypes.LOAD_CUSTOMERS_SUCCESS
 
@@ -118,7 +119,7 @@ export class DeleteCustomerFail implements Action{
 
 
 
-export type Action =
+export type Actions =
     LoadCustomers
     | LoadCustomersSuccess
     | LoadCustomersFail
