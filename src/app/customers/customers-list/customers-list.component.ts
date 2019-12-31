@@ -27,6 +27,8 @@ export class CustomersListComponent implements OnInit {
 
   ngOnInit() {        
 
+  this.store.subscribe(x=> console.log("test store",x))    
+
     this.store.dispatch(new customerActions.LoadCustomers());
     this.customers$ = this.store.pipe(
       select(fromCustomer.getCustomers)
